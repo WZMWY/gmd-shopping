@@ -34,20 +34,22 @@ public class ClassController {
 		try {
 			// 调用service相应的方法查询所有一级类别的信息，并保存查询结果
 			List<Class1> list = this.classService.selectAllClass1();
+			List<Class2> list2 = this.classService.selectAllClass2();
 			// 如果查询成功
-			if(list != null && list.size() > 0) {
+			if (list != null && list.size() > 0) {
 				// 设置结果的状态标记为0
 				rv.setCode(0);
 				// 创建Map集合
-				Map<String,Object> map = new HashMap<>();
+				Map<String, Object> map = new HashMap<>();
 				// 将查询结果存入Map集合中
 				map.put("class1List", list);
+				map.put("class2List", list2);
 				// 将Map集合存入ResultValue对象中
 				rv.setDataMap(map);
 				// 返回ResultValue对象
 				return rv;
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -70,11 +72,11 @@ public class ClassController {
 			// 调用service相应的方法查询所有一级类别的信息，并保存查询结果
 			List<Class2> list = this.classService.selectAllClass2ByClass1Id(class1Id);
 			// 如果查询成功
-			if(list != null && list.size() > 0) {
+			if (list != null && list.size() > 0) {
 				// 设置结果的状态标记为0
 				rv.setCode(0);
 				// 创建Map集合
-				Map<String,Object> map = new HashMap<>();
+				Map<String, Object> map = new HashMap<>();
 				// 将查询结果存入Map集合中
 				map.put("class2List", list);
 				// 将Map集合存入ResultValue对象中
@@ -82,7 +84,7 @@ public class ClassController {
 				// 返回ResultValue对象
 				return rv;
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

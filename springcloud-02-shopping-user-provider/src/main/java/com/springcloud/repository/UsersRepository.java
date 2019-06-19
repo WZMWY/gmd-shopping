@@ -80,4 +80,22 @@ public interface UsersRepository extends JpaRepository<Users, Integer>, JpaSpeci
 	@Modifying
 	@Query("update Users u set u.userName=:#{#users.userName} where u.userId=:#{#users.userId}")
 	public abstract Integer updateName(@Param("users") Users users);
+
+	/**
+	 * 查询USERS表中指定用户名出现的次数称
+	 * 
+	 * @param userName 判断出现次数的用户名
+	 * @return 返回用户名在USERS表中出现的次数
+	 */
+	public abstract Long countByUserName(String userName);
+
+	/**
+	 * 
+	 * @param userName
+	 * @param userPassword
+	 * @param userStatus
+	 * @param jdictionId
+	 * @return
+	 */
+	public abstract Users findByUserNameAndUserPasswordAndUserStatusAndJdictionId(String userName, String userPassword, Integer userStatus, Integer jdictionId);
 }

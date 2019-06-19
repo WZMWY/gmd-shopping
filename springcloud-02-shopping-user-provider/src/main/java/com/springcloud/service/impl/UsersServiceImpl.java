@@ -102,4 +102,17 @@ public class UsersServiceImpl implements UsersService {
 		}
 		return 0;
 	}
+
+	@Transactional
+	@Override
+	public Long countByUserName(String userName) {
+		return this.usersRepository.countByUserName(userName);
+	}
+
+	@Override
+	public Users userLogin(String userName, String userPassword, Integer userStatus, Integer jdictionId) {
+		return this.usersRepository.findByUserNameAndUserPasswordAndUserStatusAndJdictionId(userName, userPassword, userStatus, jdictionId);
+	}
+
+	
 }

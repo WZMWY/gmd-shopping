@@ -18,11 +18,12 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:9000/eureka/
+      defaultZone: http://localhost:9000/eureka/ 
 
 mybatis:  mapper-locations:  - classpath:mapper/*.xml  #设置Mybatis的 Mapper.xml文件的位置
   type-aliases-package: com.springcloud.entity #设置Mybatis实体类的位置
   configuration:    map-underscore-to-camel-case: true  #开启Mybatis驼峰命名规则
+    #log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #设置Mybatis显示的sql语句
     
 pagehelper:  helper-dialect: mysql #设置数据库
   reasonable: true  #启用分页合理化参数

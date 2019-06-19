@@ -28,4 +28,10 @@ public interface ClassService {
 	 */
 	public abstract List<Class2> selectAllClass2ByClass1Id(Integer class1Id);
 
+	/**
+	 * 查询所有二级类别的信息
+	 * 
+	 * @return 成功返回java.util.List类型的实例，否则返回null
+	 */
+	public abstract List<Class2> selectAllClass2();
 }

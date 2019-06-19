@@ -71,4 +71,19 @@ public interface UsersService {
 	 * @return 修改成功返回大于0的整数，否则返回0
 	 */
 	public abstract Integer updateMessage(Users users);
+
+	/**
+	 * 判断指定用户名出现的次数
+	 * 
+	 * @param userName 需要判断出现次数的用户名
+	 * @return 返回java.lang.Long类型的实例
+	 */
+	public abstract Long countByUserName(String userName);
+	
+	/**
+	 * 
+	 * @param userName
+	 * @return
+	 */
+	public abstract Users userLogin(String userName, String userPassword, Integer userStatus, Integer jdictionId);
 }

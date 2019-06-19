@@ -60,6 +60,12 @@ public class UsersController {
 		return rv;
 	}
 
+	/**
+	 * 用户信息录入
+	 * 
+	 * @param users 录入的用户
+	 * @return
+	 */
 	@RequestMapping(value = "/insert")
 	public ResultValue insert(Users users) {
 		ResultValue rv = new ResultValue();
@@ -208,6 +214,53 @@ public class UsersController {
 
 		rv.setCode(1);
 		rv.setMessage("用户信息修改失败！！！");
+		return rv;
+	}
+
+	@RequestMapping(value = "/countByUserName")
+	public ResultValue countByUserName(@RequestParam("userName") String userName) {
+		ResultValue rv = new ResultValue();
+
+		try {
+			Long countByUserName = this.usersService.countByUserName(userName);
+			if (countByUserName != null) {
+				rv.setCode(0);
+				Map<String, Object> map = new HashMap<>();
+				map.put("count", countByUserName);
+
+				rv.setDataMap(map);
+				return rv;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		rv.setCode(1);
+		rv.setMessage("服务器正忙，请稍后重试！！！");
+		return rv;
+	}
+	
+	@RequestMapping(value = "/userLogin")
+	public ResultValue userLogin(@RequestParam String userName, @RequestParam String userPassword, @RequestParam Integer userStatus, @RequestParam Integer jdictionId) {
+		ResultValue rv = new ResultValue();
+		
+		try {
+			Users login = this.usersService.userLogin(userName, userPassword, userStatus, jdictionId);
+			if (login != null) {
+				rv.setCode(0);
+				
+				Map<String, Object> map = new HashMap<>();
+				map.put("userMessage", login);
+				rv.setDataMap(map);
+				
+				return rv;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		rv.setCode(1);
+		rv.setMessage("登陆信息不正确，请重新输入！！！");
 		return rv;
 	}
 }
